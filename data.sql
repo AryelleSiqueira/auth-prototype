@@ -1,9 +1,9 @@
-CREATE DATABASE boca-ex;
-USE boca-ex;
+CREATE DATABASE IF NOT EXISTS boca_example;
+USE boca_example;
 
 CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
+  'name' VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL
 );
 

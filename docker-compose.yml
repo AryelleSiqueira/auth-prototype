@@ -6,16 +6,20 @@ services:
     container_name: prototype-db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: root
+      MYSQL_DATABASE: boca_example
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     volumes:
-      - ./data:/var/lib/mysql
       - ./data.sql:/docker-entrypoint-initdb.d/data.sql
+      - ./data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 3307:3306
+    expose:
+      - 3306
 
   auth-prototype-api:
+    image: auth-prototype-api
     build: .
-    container_name: auth-prototype-api
     volumes:
       - .:/usr/app
     expose:
@@ -26,7 +30,7 @@ services:
       - LISTEN_PORT=3333
       - DB_PORT=3306
       - DB_HOST=prototype-db
-      - DB_NAME=boca-ex
+      - DB_NAME=boca_example
       - DB_USER=root
       - DB_PASSWORD=root
       - LDAP_BASE_DN=dc=inf,dc=ufes,dc=br
