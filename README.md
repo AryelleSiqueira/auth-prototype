@@ -51,11 +51,15 @@ Siga as instruções abaixo para executar o protótipo em sua máquina local:
 ## Rotas
 
 - `POST /login`: realiza a autenticação de um usuário utilizando servidor LDAP e retorna um token JWT para ser utilizado em requisições a rotas protegidas.
-   - Body (JSON)):
-     - `username`: nome de usuário
+   - Body:
+     - `username`: email
      - `password`: senha
+       
+   ![image](https://github.com/AryelleSiqueira/auth-prototype/assets/61244675/4668f370-dad1-495c-b36a-213b61aa82e7)
 
 
 
 - `GET /protected`: rota protegida por autenticação com token JWT. Retorna uma mensagem de sucesso caso o token seja válido. 
+
+  ![image](https://github.com/AryelleSiqueira/auth-prototype/assets/61244675/5f39e4ee-cca8-4e36-8c4e-08489ebcb368)
 
