@@ -8,11 +8,10 @@ Este é um protótipo que demonstra a integração de autenticação com um serv
 - [Express](https://expressjs.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TypeORM](https://typeorm.io/#/)
+- [TSyringe](https://github.com/microsoft/tsyringe)
 - [ldapjs](http://ldapjs.org/)
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
-- [MySQL](https://www.mysql.com/)
 - [OpenLDAP](https://www.openldap.org/)
-- [Docker](https://www.docker.com/)
 
 ## Funcionalidades Implementadas
 
@@ -50,16 +49,24 @@ Siga as instruções abaixo para executar o protótipo em sua máquina local:
 
 ## Rotas
 
-- `POST /login`: realiza a autenticação de um usuário utilizando servidor LDAP e retorna um token JWT para ser utilizado em requisições a rotas protegidas.
-   - Body:
-     - `username`: email
-     - `password`: senha
-       
+### `POST /login`: 
+Realiza a autenticação de um usuário utilizando servidor LDAP. Espera receber no body, em formato JSON, os campos `username` e `password` e `Content-Type: application/json` como header da requisição. Retorna um token JWT caso a autenticação seja bem sucedida.
+
+   - Formato do body:
+      ```json
+      {
+         "username": "",
+         "password": ""
+      }
+      ```
+
+   - Usuários para teste:
+      - 1: `username`: aluno@um.com | `password`: "ldappw"
+      - 2: `username`: aluno@dois.com | `password`: "ldappw"
+
    ![image](https://github.com/AryelleSiqueira/auth-prototype/assets/61244675/4668f370-dad1-495c-b36a-213b61aa82e7)
 
+### `GET /protected`: 
+Rota protegida por autenticação com token JWT. Retorna uma mensagem de sucesso caso o token seja válido.
 
-
-- `GET /protected`: rota protegida por autenticação com token JWT. Retorna uma mensagem de sucesso caso o token seja válido. 
-
-  ![image](https://github.com/AryelleSiqueira/auth-prototype/assets/61244675/5f39e4ee-cca8-4e36-8c4e-08489ebcb368)
-
+   ![image](https://github.com/AryelleSiqueira/auth-prototype/assets/61244675/5f39e4ee-cca8-4e36-8c4e-08489ebcb368)
